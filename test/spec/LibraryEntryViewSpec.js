@@ -31,4 +31,15 @@ describe('LibraryEntryView', function() {
     SongModel.prototype.enqueue.restore();
   });
 
+  it('should not queue the same song more than once', function() {
+    sinon.spy(SongModel.prototype, 'enqueue');
+
+    view.$el.children().first().click();
+    expect(model.enqueue).to.have.been.called;
+    view.$el.children().first().click();
+    expect(model.enqueue).to.have.been.calledTwice;
+
+    SongModel.prototype.enqueue.restore();
+  });
+
 });
