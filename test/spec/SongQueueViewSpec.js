@@ -35,4 +35,11 @@ describe('SongQueueView', function() {
     expect(view.render).to.have.been.called;
   });
 
+  it('It should rerender when a song is dequeued', function() {
+    // sinon.spy(SongQueueView.prototype, 'render');
+    view = new SongQueueView({collection: fakeSongs});
+    view.$el.children().first().click();
+    expect(view.render).to.have.been.called;
+  });
+
 });

@@ -5,7 +5,7 @@ var LibraryView = Backbone.View.extend({
 
   initialize: function() {
     this.render();
-
+    this.collection.on('sync', this.render, this);
   },
 
   render: function() {
@@ -16,6 +16,7 @@ var LibraryView = Backbone.View.extend({
 
     this.$el.html('<th>Library</th>').append(
       this.collection.map(function(song) {
+        // console.log(this);
         return new LibraryEntryView({model: song}).render();
       })
     );
